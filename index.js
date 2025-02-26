@@ -6,7 +6,7 @@ const BASE_URL = "https://api.essendant.com/digital/digitalservices/search/v2";
 const MAIN_PRODUCT_URL = `${BASE_URL}/search?fc=90298&cr=1&rs=24&st=BM&cmt=ALT&vc=n`;  
 const ITEM_DETAIL_URL = `${BASE_URL}/items?&vc=n&sgs=Simple&win={SKU}&re=Detail`;  
 
-// Common headers for all requests
+// Common headers for all requestsaad
 const COMMON_HEADERS = {
     'accept': 'application/json, text/plain, */*',
     'accept-encoding': 'gzip, deflate, br, zstd',
