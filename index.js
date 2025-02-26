@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = "https://api.essendant.com/digital/digitalservices/search/v2";  
-const MAIN_PRODUCT_URL = `${BASE_URL}/search?fc=90298&cr=1&rs=24&st=BM&cmt=ALT&vc=n`;  
 const ITEM_DETAIL_URL = `${BASE_URL}/items?&vc=n&sgs=Simple&win={SKU}&re=Detail`;  
+const PRODUCTS_PER_PAGE = 24;
 
 // Common headers for all requestsaad
 const COMMON_HEADERS = {
@@ -25,28 +25,73 @@ const COMMON_HEADERS = {
     'x-api-key': '31BC6E02FD51DF7F7CE37186A31EE9B9DEF9C642526BC29F8201D81B669B9'
 };
 
-// Function to fetch main product list and extract SKUs  
-async function fetchAllProductSKUs() {  
-    try {  
-        const response = await axios.get(MAIN_PRODUCT_URL, {  
-            headers: {  
-                ...COMMON_HEADERS,  
-                'Content-Type': 'application/json;charset=UTF-8',  
-            }  
-        });  
-        const products = response.data.searchResult.products;  
+// Function to read category data from text file
+function readCategoryData(filePath) {
+    try {
+        const data = fs.readFileSync(filePath, 'utf8');
+        const categories = [];
+        
+        // Split by lines and process each line
+        const lines = data.trim().split('\n');
+        for (const line of lines) {
+            const [categoryNumber, totalProducts] = line.trim().split(',').map(item => item.trim());
+            if (categoryNumber && totalProducts) {
+                categories.push({
+                    categoryNumber,
+                    totalProducts: parseInt(totalProducts)
+                });
+            }
+        }
+        return categories;
+    } catch (error) {
+        console.error("Error reading category data:", error.message);
+        return [];
+    }
+}
 
-        if (!products || products.length === 0) {  
-            console.log("No products found.");  
-            return [];  
-        }  
- 
-        return products.map(product => product.win); // Extract SKU numbers  
-    } catch (error) {  
-        console.error("Error fetching product SKUs:", error.message);  
-        return [];  
-    }  
-}  
+// Function to generate URLs for a category based on total products
+function generateCategoryUrls(categoryNumber, totalProducts) {
+    const urls = [];
+    const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+
+    for (let page = 0; page < totalPages; page++) {
+        const startProduct = page * PRODUCTS_PER_PAGE + 1;
+        const url = `${BASE_URL}/search?fc=${categoryNumber}&cr=${startProduct}&rs=${PRODUCTS_PER_PAGE}&st=BM&cmt=ALT&vc=n`;
+        urls.push(url);
+    }
+
+    return urls;
+}
+
+// Modified fetchAllProductSKUs to handle paginated URLs
+async function fetchAllProductSKUs(categoryUrls, categoryNumber) {
+    let allSKUs = [];
+
+    for (const [index, url] of categoryUrls.entries()) {
+        try {
+            console.log(`Fetching page ${index + 1} for category ${categoryNumber}...`);
+            
+            const response = await axios.get(url, {
+                headers: {
+                    ...COMMON_HEADERS,
+                    'Content-Type': 'application/json;charset=UTF-8',
+                }
+            });
+
+            const products = response.data.searchResult.products;
+            if (products && products.length > 0) {
+                allSKUs.push(...products.map(product => product.win));
+            }
+
+            // Add a small delay between requests
+            await new Promise(resolve => setTimeout(resolve, 500));
+        } catch (error) {
+            console.error(`Error fetching page ${index + 1} for category ${categoryNumber}:`, error.message);
+        }
+    }
+
+    return allSKUs;
+}
 
 // Function to ensure URL has https://
 function formatImageUrl(url) {
@@ -89,7 +134,8 @@ async function fetchProductDetails(sku) {
             },
             moreImages: (itemData.moreImages || []).map(img => ({
                 url: formatImageUrl(img.url)
-            }))
+            })),
+            categoryNumber: itemData.attributes?.find(attr => attr.name === "Category Number")?.value || "N/A"
         };
 
         return { productData, imageData };  
@@ -157,51 +203,68 @@ function removeExistingFiles() {
     });
 }
 
-// Main Scraping Process  
-async function scrapeProducts() {  
+// Modified main scraping function to handle multiple categories
+async function scrapeProducts() {
     // Remove existing files before starting
     removeExistingFiles();
-    
-    console.log("Fetching product SKUs...");  
-    const skus = await fetchAllProductSKUs();  
 
-    if (skus.length === 0) {  
-        console.log("No SKUs to process.");  
-        return;  
-    }  
+    // Read category data from file
+    const categories = readCategoryData('categories.txt');
+    if (categories.length === 0) {
+        console.log("No categories found in categories.txt");
+        return;
+    }
 
-    console.log(`Found ${skus.length} SKUs. Fetching product details...`);  
-    let productData = [];
-    let imageData = [];  
+    let allProductData = [];
+    let allImageData = [];
 
-    for (const sku of skus) {  
-        const result = await fetchProductDetails(sku);  
-        if (result) {
-            productData.push(result.productData);
-            imageData.push(result.imageData);
-        }  
-    }  
+    // Process each category
+    for (const category of categories) {
+        console.log(`Processing category ${category.categoryNumber} (${category.totalProducts} products)...`);
+        
+        // Generate URLs for this category
+        const categoryUrls = generateCategoryUrls(category.categoryNumber, category.totalProducts);
+        
+        // Fetch all SKUs for this category
+        const skus = await fetchAllProductSKUs(categoryUrls, category.categoryNumber);
+        console.log(`Found ${skus.length} SKUs in category ${category.categoryNumber}`);
 
-    // Add count information to the JSON files
+        // Fetch details for each SKU
+        for (const sku of skus) {
+            const result = await fetchProductDetails(sku);
+            if (result) {
+                // Add category information to the data
+                result.productData.categoryNumber = category.categoryNumber;
+                result.imageData.categoryNumber = category.categoryNumber;
+                
+                allProductData.push(result.productData);
+                allImageData.push(result.imageData);
+            }
+            
+            // Add a small delay between SKU requests
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+
+    // Save all data
     const productDataWithCount = {
-        totalItems: productData.length,
-        products: productData
+        totalItems: allProductData.length,
+        products: allProductData
     };
 
     const imageDataWithCount = {
-        totalItems: imageData.length,
-        images: imageData
+        totalItems: allImageData.length,
+        images: allImageData
     };
 
-    // Create data directory if it doesn't exist
+    // Save to JSON files
     const dataDir = 'data';
     ensureDirectoryExists(dataDir);
-
-    // Save to separate JSON files in the data directory
     fs.writeFileSync(path.join(dataDir, 'product_data.json'), JSON.stringify(productDataWithCount, null, 2));
-    fs.writeFileSync(path.join(dataDir, 'image_data.json'), JSON.stringify(imageDataWithCount, null, 2));  
-    console.log("Scraping completed. Data saved to 'data/product_data.json' and 'data/image_data.json'.");  
-}  
+    fs.writeFileSync(path.join(dataDir, 'image_data.json'), JSON.stringify(imageDataWithCount, null, 2));
+    
+    console.log("Scraping completed. Data saved to 'data/product_data.json' and 'data/image_data.json'.");
+}
 
-// Run the scraping process  
+// Run the scraping process
 scrapeProducts();
