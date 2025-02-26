@@ -1,5 +1,6 @@
 const axios = require('axios');  
 const fs = require('fs');  
+const path = require('path');
 
 const BASE_URL = "https://api.essendant.com/digital/digitalservices/search/v2";  
 const MAIN_PRODUCT_URL = `${BASE_URL}/search?fc=90298&cr=1&rs=24&st=BM&cmt=ALT&vc=n`;  
@@ -130,13 +131,24 @@ function extractAttributes(attributes) {
     }));  
 }  
 
+// Function to ensure directory exists
+function ensureDirectoryExists(directory) {
+    if (!fs.existsSync(directory)) {
+        fs.mkdirSync(directory, { recursive: true });
+    }
+}
+
 // Function to remove existing files if they exist
 function removeExistingFiles() {
+    const dataDir = 'data';
+    ensureDirectoryExists(dataDir);
+    
     const files = ['product_data.json', 'image_data.json'];
     files.forEach(file => {
-        if (fs.existsSync(file)) {
+        const filePath = path.join(dataDir, file);
+        if (fs.existsSync(filePath)) {
             try {
-                fs.unlinkSync(file);
+                fs.unlinkSync(filePath);
                 console.log(`Removed existing ${file}`);
             } catch (err) {
                 console.error(`Error removing ${file}:`, err.message);
@@ -181,10 +193,14 @@ async function scrapeProducts() {
         images: imageData
     };
 
-    // Save to separate JSON files  
-    fs.writeFileSync('product_data.json', JSON.stringify(productDataWithCount, null, 2));
-    fs.writeFileSync('image_data.json', JSON.stringify(imageDataWithCount, null, 2));  
-    console.log("Scraping completed. Data saved to 'product_data.json' and 'image_data.json'.");  
+    // Create data directory if it doesn't exist
+    const dataDir = 'data';
+    ensureDirectoryExists(dataDir);
+
+    // Save to separate JSON files in the data directory
+    fs.writeFileSync(path.join(dataDir, 'product_data.json'), JSON.stringify(productDataWithCount, null, 2));
+    fs.writeFileSync(path.join(dataDir, 'image_data.json'), JSON.stringify(imageDataWithCount, null, 2));  
+    console.log("Scraping completed. Data saved to 'data/product_data.json' and 'data/image_data.json'.");  
 }  
 
 // Run the scraping process  

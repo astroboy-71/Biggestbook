@@ -1,0 +1,658 @@
+{
+    "categories": [
+        {
+            "description": "School Supplies",
+            "itemCount": 20003,
+            "subCategories": [
+                {
+                    "description": "Arts & Crafts",
+                    "itemCount": 2124
+                },
+                {
+                    "description": "Boards & Board Accessories",
+                    "itemCount": 898
+                },
+                {
+                    "description": "Book Bags & Supply Cases",
+                    "itemCount": 173
+                },
+                {
+                    "description": "Calendars, Planners & Personal Organizers",
+                    "itemCount": 610
+                },
+                {
+                    "description": "Cleaning Products",
+                    "itemCount": 864
+                },
+                {
+                    "description": "Correction Supplies",
+                    "itemCount": 279
+                },
+                {
+                    "description": "Desktop Tools & Accessories",
+                    "itemCount": 836
+                },
+                {
+                    "description": "Faculty & Office Furniture",
+                    "itemCount": 2415
+                },
+                {
+                    "description": "Folders",
+                    "itemCount": 1840
+                },
+                {
+                    "description": "Games, Toys & Manipulatives",
+                    "itemCount": 39
+                },
+                {
+                    "description": "Measuring Tools",
+                    "itemCount": 63
+                },
+                {
+                    "description": "Notebooks & Binders",
+                    "itemCount": 1273
+                },
+                {
+                    "description": "Paper Pads",
+                    "itemCount": 587
+                },
+                {
+                    "description": "Pens, Pencils, Highlighters & Markers",
+                    "itemCount": 2144
+                },
+                {
+                    "description": "Printing Supplies",
+                    "itemCount": 4617
+                },
+                {
+                    "description": "Reference Books & Study Aides",
+                    "itemCount": 113
+                },
+                {
+                    "description": "Sports & Phys Ed Equipment",
+                    "itemCount": 289
+                },
+                {
+                    "description": "Student Furniture",
+                    "itemCount": 474
+                },
+                {
+                    "description": "Teacher & Classroom Supplies",
+                    "itemCount": 521
+                },
+                {
+                    "description": "Technology & Electronics",
+                    "itemCount": 843
+                }
+            ]
+        },
+        {
+            "description": "Food Service",
+            "itemCount": 6956,
+            "subCategories": [
+                {
+                    "description": "Apparel",
+                    "itemCount": 203
+                },
+                {
+                    "description": "Appliances",
+                    "itemCount": 31
+                },
+                {
+                    "description": "Bags",
+                    "itemCount": 223
+                },
+                {
+                    "description": "Beverages & Beverage Dispensers",
+                    "itemCount": 414
+                },
+                {
+                    "description": "Bowls & Plates",
+                    "itemCount": 295
+                },
+                {
+                    "description": "Breakroom Supplies",
+                    "itemCount": 420
+                },
+                {
+                    "description": "Coffee",
+                    "itemCount": 640
+                },
+                {
+                    "description": "Cups & Lids",
+                    "itemCount": 746
+                },
+                {
+                    "description": "Cutlery",
+                    "itemCount": 371
+                },
+                {
+                    "description": "Food",
+                    "itemCount": 1086
+                },
+                {
+                    "description": "Food Trays, Containers & Lids",
+                    "itemCount": 1079
+                },
+                {
+                    "description": "Food Warming",
+                    "itemCount": 70
+                },
+                {
+                    "description": "Food Wraps",
+                    "itemCount": 147
+                },
+                {
+                    "description": "Furniture, Carts & Shelving",
+                    "itemCount": 490
+                },
+                {
+                    "description": "Glassware",
+                    "itemCount": 13
+                },
+                {
+                    "description": "Kitchen Supplies",
+                    "itemCount": 646
+                },
+                {
+                    "description": "Napkins, Dispensers & Towelettes",
+                    "itemCount": 148
+                },
+                {
+                    "description": "Party Decorations",
+                    "itemCount": 83
+                },
+                {
+                    "description": "Pizza Supplies",
+                    "itemCount": 12
+                },
+                {
+                    "description": "Table Service",
+                    "itemCount": 16
+                },
+                {
+                    "description": "Warewashing",
+                    "itemCount": 9
+                }
+            ]
+        },
+        {
+            "description": "Furniture",
+            "itemCount": 5299,
+            "subCategories": [
+                {
+                    "description": "Bookcases & Shelving",
+                    "itemCount": 250
+                },
+                {
+                    "description": "Carts & Stands",
+                    "itemCount": 318
+                },
+                {
+                    "description": "Chair Mats & Floor Mats",
+                    "itemCount": 362
+                },
+                {
+                    "description": "Chairs, Stools & Seating Accessories",
+                    "itemCount": 1020
+                },
+                {
+                    "description": "Desk & Workstation Add-Ons",
+                    "itemCount": 575
+                },
+                {
+                    "description": "Desks & Workstations",
+                    "itemCount": 491
+                },
+                {
+                    "description": "Early Learning Furniture",
+                    "itemCount": 48
+                },
+                {
+                    "description": "File & Storage Cabinets",
+                    "itemCount": 548
+                },
+                {
+                    "description": "Footrests & Foot Stools",
+                    "itemCount": 34
+                },
+                {
+                    "description": "Furniture Repair & Supplies",
+                    "itemCount": 1
+                },
+                {
+                    "description": "Garment Racks & Hangers",
+                    "itemCount": 151
+                },
+                {
+                    "description": "Lecterns",
+                    "itemCount": 48
+                },
+                {
+                    "description": "Literature Racks & Display Cases",
+                    "itemCount": 49
+                },
+                {
+                    "description": "Partitions & Panels",
+                    "itemCount": 157
+                },
+                {
+                    "description": "Reception Seating & Sofas",
+                    "itemCount": 117
+                },
+                {
+                    "description": "Room Accessories",
+                    "itemCount": 510
+                },
+                {
+                    "description": "Tables",
+                    "itemCount": 733
+                }
+            ]
+        },
+        {
+            "description": "Industrial",
+            "itemCount": 4048,
+            "subCategories": [
+                {
+                    "description": "Adhesives, Sealants & Tapes",
+                    "itemCount": 10
+                },
+                {
+                    "description": "Chemicals, Lubricants & Paints",
+                    "itemCount": 271
+                },
+                {
+                    "description": "Electrical & Lighting",
+                    "itemCount": 207
+                },
+                {
+                    "description": "Fasteners, Clamps & Straps",
+                    "itemCount": 1
+                },
+                {
+                    "description": "HVAC",
+                    "itemCount": 22
+                },
+                {
+                    "description": "Hand Tools",
+                    "itemCount": 316
+                },
+                {
+                    "description": "MRO Supplies",
+                    "itemCount": 34
+                },
+                {
+                    "description": "Marking Tools",
+                    "itemCount": 154
+                },
+                {
+                    "description": "Material Handling",
+                    "itemCount": 220
+                },
+                {
+                    "description": "Measuring & Leveling Tools",
+                    "itemCount": 15
+                },
+                {
+                    "description": "Plumbing Equipment",
+                    "itemCount": 24
+                },
+                {
+                    "description": "Pneumatics",
+                    "itemCount": 2
+                },
+                {
+                    "description": "Pumps",
+                    "itemCount": 7
+                },
+                {
+                    "description": "Safety & Security",
+                    "itemCount": 2895
+                },
+                {
+                    "description": "Vehicle & Trailer Accessories",
+                    "itemCount": 3
+                }
+            ]
+        },
+        {
+            "description": "Janitorial & Sanitation",
+            "itemCount": 13088,
+            "subCategories": [
+                {
+                    "description": "Air Cleaners, Fans, Heaters & Humidifiers",
+                    "itemCount": 86
+                },
+                {
+                    "description": "Batteries & Electrical Supplies",
+                    "itemCount": 442
+                },
+                {
+                    "description": "Brooms, Brushes & Dusters",
+                    "itemCount": 258
+                },
+                {
+                    "description": "Cleaners & Detergents",
+                    "itemCount": 1348
+                },
+                {
+                    "description": "Cleaning Tools",
+                    "itemCount": 767
+                },
+                {
+                    "description": "Facility Maintenance",
+                    "itemCount": 161
+                },
+                {
+                    "description": "First Aid & Health Supplies",
+                    "itemCount": 606
+                },
+                {
+                    "description": "Floor & Carpet Care",
+                    "itemCount": 620
+                },
+                {
+                    "description": "Gloves & Glove Dispensers",
+                    "itemCount": 885
+                },
+                {
+                    "description": "Hand Sanitizers & Dispensers",
+                    "itemCount": 260
+                },
+                {
+                    "description": "Hardware, Tools & Accessories",
+                    "itemCount": 204
+                },
+                {
+                    "description": "Laundry Products",
+                    "itemCount": 273
+                },
+                {
+                    "description": "Matting",
+                    "itemCount": 157
+                },
+                {
+                    "description": "Mops & Equipment",
+                    "itemCount": 502
+                },
+                {
+                    "description": "Odor Control",
+                    "itemCount": 527
+                },
+                {
+                    "description": "Personal Hygiene Products",
+                    "itemCount": 322
+                },
+                {
+                    "description": "Restroom Cleaners & Accessories",
+                    "itemCount": 302
+                },
+                {
+                    "description": "Safety & Security",
+                    "itemCount": 3014
+                },
+                {
+                    "description": "Soaps & Dispensers",
+                    "itemCount": 687
+                },
+                {
+                    "description": "Towels, Tissues & Dispensers",
+                    "itemCount": 1322
+                },
+                {
+                    "description": "Trash Bags, Can Liners & Dispensers",
+                    "itemCount": 647
+                },
+                {
+                    "description": "Trucks, Carts & Dollies",
+                    "itemCount": 255
+                },
+                {
+                    "description": "Waste Receptacles & Lids",
+                    "itemCount": 592
+                }
+            ]
+        },
+        {
+            "description": "Office",
+            "itemCount": 18075,
+            "subCategories": [
+                {
+                    "description": "Arts & Crafts",
+                    "itemCount": 1845
+                },
+                {
+                    "description": "Batteries & Electrical Supplies",
+                    "itemCount": 506
+                },
+                {
+                    "description": "Binders & Binding Supplies",
+                    "itemCount": 1214
+                },
+                {
+                    "description": "Calendars, Planners & Personal Organizers",
+                    "itemCount": 621
+                },
+                {
+                    "description": "Carrying Cases",
+                    "itemCount": 212
+                },
+                {
+                    "description": "Cash Handling",
+                    "itemCount": 209
+                },
+                {
+                    "description": "Cutting & Measuring Devices",
+                    "itemCount": 236
+                },
+                {
+                    "description": "Desk Accessories & Workspace Organizers",
+                    "itemCount": 771
+                },
+                {
+                    "description": "Envelopes & Mail Supplies",
+                    "itemCount": 697
+                },
+                {
+                    "description": "File & Storage Cabinets",
+                    "itemCount": 64
+                },
+                {
+                    "description": "File Folders, Portable & Storage Box Files",
+                    "itemCount": 2183
+                },
+                {
+                    "description": "Forms, Recordkeeping & Reference Materials",
+                    "itemCount": 693
+                },
+                {
+                    "description": "General Office Accessories",
+                    "itemCount": 123
+                },
+                {
+                    "description": "Identification Badges",
+                    "itemCount": 242
+                },
+                {
+                    "description": "Index Dividers",
+                    "itemCount": 442
+                },
+                {
+                    "description": "Label Makers and Supplies",
+                    "itemCount": 332
+                },
+                {
+                    "description": "Labels & Stickers",
+                    "itemCount": 629
+                },
+                {
+                    "description": "Mouse Pads & Wrist Rests",
+                    "itemCount": 132
+                },
+                {
+                    "description": "Notebooks & Journals",
+                    "itemCount": 524
+                },
+                {
+                    "description": "Pack & Ship",
+                    "itemCount": 872
+                },
+                {
+                    "description": "Paper & Printable Media",
+                    "itemCount": 1362
+                },
+                {
+                    "description": "Presentation/Display & Scheduling Boards",
+                    "itemCount": 876
+                },
+                {
+                    "description": "Room Accessories",
+                    "itemCount": 383
+                },
+                {
+                    "description": "Safety & Security",
+                    "itemCount": 44
+                },
+                {
+                    "description": "Shredders & Accessories",
+                    "itemCount": 100
+                },
+                {
+                    "description": "Stamps & Stamp Supplies",
+                    "itemCount": 329
+                },
+                {
+                    "description": "Staplers & Punches",
+                    "itemCount": 320
+                },
+                {
+                    "description": "Tags & Tickets",
+                    "itemCount": 41
+                },
+                {
+                    "description": "Tape, Adhesives & Fasteners",
+                    "itemCount": 923
+                },
+                {
+                    "description": "Writing & Correction Supplies",
+                    "itemCount": 2784
+                },
+                {
+                    "description": "Writing Pads & Self-Stick Notes",
+                    "itemCount": 672
+                }
+            ]
+        },
+        {
+            "description": "Technology",
+            "itemCount": 8080,
+            "subCategories": [
+                {
+                    "description": "Audio Visual Equipment & Accessories",
+                    "itemCount": 81
+                },
+                {
+                    "description": "Backup Systems & Disks",
+                    "itemCount": 49
+                },
+                {
+                    "description": "Batteries & Electrical Supplies",
+                    "itemCount": 510
+                },
+                {
+                    "description": "Calculators",
+                    "itemCount": 117
+                },
+                {
+                    "description": "Cameras, Camcorders & Accessories",
+                    "itemCount": 23
+                },
+                {
+                    "description": "Computer Cleaners",
+                    "itemCount": 20
+                },
+                {
+                    "description": "Computer Hardware & Accessories",
+                    "itemCount": 345
+                },
+                {
+                    "description": "Computer Keyboards & Mice",
+                    "itemCount": 174
+                },
+                {
+                    "description": "Computer Software",
+                    "itemCount": 3
+                },
+                {
+                    "description": "Data Storage Media & Supplies",
+                    "itemCount": 293
+                },
+                {
+                    "description": "Electronics",
+                    "itemCount": 105
+                },
+                {
+                    "description": "Label Makers and Supplies",
+                    "itemCount": 332
+                },
+                {
+                    "description": "Laminator & Laminator Supplies",
+                    "itemCount": 187
+                },
+                {
+                    "description": "Mobile Devices and Accessories",
+                    "itemCount": 49
+                },
+                {
+                    "description": "Mouse Pads & Wrist Rests",
+                    "itemCount": 132
+                },
+                {
+                    "description": "Networking, Cables & Accessories",
+                    "itemCount": 227
+                },
+                {
+                    "description": "Paper & Printable Media",
+                    "itemCount": 55
+                },
+                {
+                    "description": "Printer Accessories",
+                    "itemCount": 90
+                },
+                {
+                    "description": "Printers & Copier/Fax/Multifunction Machines",
+                    "itemCount": 354
+                },
+                {
+                    "description": "Printing Supplies",
+                    "itemCount": 4396
+                },
+                {
+                    "description": "Security and Surveillance Systems and Accessories",
+                    "itemCount": 8
+                },
+                {
+                    "description": "Shredders & Accessories",
+                    "itemCount": 100
+                },
+                {
+                    "description": "Telephones & Telephone Accessories",
+                    "itemCount": 124
+                },
+                {
+                    "description": "Transcription & Transcription Accessories",
+                    "itemCount": 11
+                },
+                {
+                    "description": "Typewriters & Typewriter Accessories",
+                    "itemCount": 1
+                },
+                {
+                    "description": "Warranties",
+                    "itemCount": 294
+                }
+            ]
+        }
+    ]
+}
