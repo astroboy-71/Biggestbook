@@ -63,13 +63,13 @@ function generateCategoryUrls(categoryNumber, totalProducts) {
     return urls;
 }
 
-// Modified fetchAllProductSKUs to handle paginated URLs
+// Modified fetchAllProductSKUs to include more logging
 async function fetchAllProductSKUs(categoryUrls, categoryNumber) {
     let allSKUs = [];
 
     for (const [index, url] of categoryUrls.entries()) {
         try {
-            console.log(`Fetching page ${index + 1} for category ${categoryNumber}...`);
+            console.log(`Fetching page ${index + 1} of ${categoryUrls.length} for category ${categoryNumber}...`);
             
             const response = await axios.get(url, {
                 headers: {
@@ -80,7 +80,11 @@ async function fetchAllProductSKUs(categoryUrls, categoryNumber) {
 
             const products = response.data.searchResult.products;
             if (products && products.length > 0) {
-                allSKUs.push(...products.map(product => product.win));
+                const newSKUs = products.map(product => product.win);
+                allSKUs.push(...newSKUs);
+                console.log(`Found ${newSKUs.length} SKUs on page ${index + 1}. Total SKUs so far: ${allSKUs.length}`);
+            } else {
+                console.log(`No products found on page ${index + 1}`);
             }
 
             // Add a small delay between requests
@@ -203,7 +207,7 @@ function removeExistingFiles() {
     });
 }
 
-// Modified main scraping function to handle multiple categories
+// Modified scrapeProducts function to include more logging
 async function scrapeProducts() {
     // Remove existing files before starting
     removeExistingFiles();
@@ -220,17 +224,20 @@ async function scrapeProducts() {
 
     // Process each category
     for (const category of categories) {
-        console.log(`Processing category ${category.categoryNumber} (${category.totalProducts} products)...`);
+        console.log(`\n=== Processing category ${category.categoryNumber} (${category.totalProducts} products) ===`);
         
         // Generate URLs for this category
         const categoryUrls = generateCategoryUrls(category.categoryNumber, category.totalProducts);
+        console.log(`Generated ${categoryUrls.length} URLs to process for category ${category.categoryNumber}`);
         
         // Fetch all SKUs for this category
         const skus = await fetchAllProductSKUs(categoryUrls, category.categoryNumber);
-        console.log(`Found ${skus.length} SKUs in category ${category.categoryNumber}`);
+        console.log(`\nCompleted category ${category.categoryNumber}: Found ${skus.length} total SKUs`);
 
         // Fetch details for each SKU
-        for (const sku of skus) {
+        console.log(`\nStarting to fetch product details for ${skus.length} SKUs in category ${category.categoryNumber}...`);
+        for (const [index, sku] of skus.entries()) {
+            console.log(`Processing SKU ${index + 1}/${skus.length}: ${sku}`);
             const result = await fetchProductDetails(sku);
             if (result) {
                 // Add category information to the data
@@ -239,11 +246,17 @@ async function scrapeProducts() {
                 
                 allProductData.push(result.productData);
                 allImageData.push(result.imageData);
+                console.log(`Successfully processed SKU: ${sku}`);
+            } else {
+                console.log(`Failed to process SKU: ${sku}`);
             }
             
             // Add a small delay between SKU requests
             await new Promise(resolve => setTimeout(resolve, 500));
         }
+        
+        console.log(`\nCompleted processing all SKUs for category ${category.categoryNumber}`);
+        console.log(`Current total products processed: ${allProductData.length}`);
     }
 
     // Save all data
